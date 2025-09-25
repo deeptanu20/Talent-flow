@@ -1,0 +1,236 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+/* Custom CSS Variables */
+:root {
+  --header-height: 4rem;
+  --sidebar-width: 16rem;
+}
+
+/* Base Styles */
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 1.6;
+}
+
+/* Dark mode transitions */
+* {
+  transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-gray-100 dark:bg-gray-800;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-gray-300 dark:bg-gray-600 rounded-full;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-gray-400 dark:bg-gray-500;
+}
+
+/* Custom Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+/* Loading Spinner */
+.spinner {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Drag and Drop Styles */
+.drag-over {
+  @apply bg-blue-50 dark:bg-blue-900/20 border-blue-300 dark:border-blue-600;
+}
+
+.dragging {
+  @apply opacity-50 transform rotate-2 scale-95;
+}
+
+/* Focus Styles */
+.focus-ring {
+  @apply focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 focus:ring-offset-white dark:focus:ring-offset-gray-900;
+}
+
+/* Button Loading State */
+.btn-loading {
+  @apply relative text-transparent pointer-events-none;
+}
+
+.btn-loading::after {
+  content: '';
+  @apply absolute inset-0 m-auto w-4 h-4 border-2 border-white border-t-transparent rounded-full;
+  animation: spin 1s linear infinite;
+}
+
+/* Form Validation */
+.field-error {
+  @apply border-red-300 dark:border-red-600 focus:border-red-500 focus:ring-red-500;
+}
+
+.field-success {
+  @apply border-green-300 dark:border-green-600 focus:border-green-500 focus:ring-green-500;
+}
+
+/* Modal Backdrop */
+.modal-backdrop {
+  /* backdrop-filter: blur(4px); */
+  @apply bg-black bg-opacity-50;
+}
+
+/* Kanban Board Styles */
+.kanban-column {
+  min-height: 500px;
+  @apply bg-gray-50 dark:bg-gray-800 rounded-lg p-4;
+}
+
+.kanban-card {
+  @apply bg-white dark:bg-gray-700 rounded-lg shadow-sm border border-gray-200 dark:border-gray-600 p-4 mb-3 cursor-grab transition-shadow hover:shadow-md;
+}
+
+.kanban-card:active {
+  @apply cursor-grabbing;
+}
+
+/* Assessment Builder Styles */
+.question-editor {
+  @apply border border-gray-200 dark:border-gray-600 rounded-lg p-4 mb-4;
+}
+
+.question-type-mcq .options {
+  @apply space-y-2 mt-3;
+}
+
+.question-option {
+  @apply flex items-center space-x-2 p-2 bg-gray-50 dark:bg-gray-800 rounded;
+}
+
+/* Virtualized List Styles */
+.virtual-list-container {
+  @apply border border-gray-200 dark:border-gray-700 rounded-lg overflow-hidden;
+}
+
+.virtual-list-item {
+  @apply border-b border-gray-100 dark:border-gray-800 last:border-b-0;
+}
+
+/* Search Highlight */
+.search-highlight {
+  @apply bg-yellow-200 dark:bg-yellow-800 px-1 rounded;
+}
+
+/* Toast Notifications */
+.toast {
+  @apply fixed top-4 right-4 z-50 max-w-sm bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg shadow-lg p-4;
+  animation: slideDown 0.3s ease-out;
+}
+
+.toast.success {
+  @apply border-green-200 dark:border-green-800 bg-green-50 dark:bg-green-900/20;
+}
+
+.toast.error {
+  @apply border-red-200 dark:border-red-800 bg-red-50 dark:bg-red-900/20;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .sidebar {
+    transform: translateX(-100%);
+    @apply fixed inset-y-0 left-0 z-50;
+  }
+  
+  .sidebar.open {
+    transform: translateX(0);
+  }
+  
+  .main-content {
+    @apply ml-0;
+  }
+  
+  .kanban-board {
+    @apply flex-col;
+  }
+  
+  .kanban-column {
+    @apply w-full mb-4;
+    min-height: 300px;
+  }
+}
+
+/* Print Styles */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+  
+  .print-break {
+    page-break-before: always;
+  }
+}
