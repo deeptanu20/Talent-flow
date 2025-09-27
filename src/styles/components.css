@@ -1,4 +1,4 @@
-
+/* Button Component Styles */
 .btn-base {
   @apply inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200;
 }
@@ -192,7 +192,8 @@
 
 /* Textarea Component Styles */
 .textarea-base {
-  @apply block w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-white resize-vertical transition-colors;
+  @apply block w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-white transition-colors;
+  resize: vertical;
 }
 
 /* Badge Component Styles */
@@ -641,4 +642,32 @@
 
 .range-slider::-moz-range-thumb {
   @apply w-4 h-4 bg-blue-600 rounded-full border-0 cursor-pointer;
+}
+
+/* Custom animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { 
+    opacity: 0; 
+    transform: translateY(4px); 
+  }
+  to { 
+    opacity: 1; 
+    transform: translateY(0); 
+  }
+}
+
+@keyframes slideDown {
+  from { 
+    opacity: 0; 
+    transform: translateY(-4px); 
+  }
+  to { 
+    opacity: 1; 
+    transform: translateY(0); 
+  }
 }
